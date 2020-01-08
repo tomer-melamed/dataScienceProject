@@ -31,6 +31,3 @@ class DynamicBritanica(DynamicScrapers):
         all_kg = [float(i) for i in all_kg if float(i) != 0]
         kg_avg = sum(all_kg) / len(all_kg) if len(all_kg) else 1
         return [i for i in all_kg if i > kg_avg / 4 and i < kg_avg * 4]
-
-# a = DynamicBritanica()
-# a.search_value_weight(a.search_value_page('lion'))

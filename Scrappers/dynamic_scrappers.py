@@ -8,6 +8,7 @@ class DynamicScrapers(ABC):
         self.session = requests.Session()
         http_adapter = requests.adapters.HTTPAdapter(max_retries=3)  # https://github.com/requests/requests/issues/4664
         self.session.mount('http://', http_adapter)
+        self.session.max_redirects = 300
 
 
     def request(self, url, method='GET', params=None, headers=None):

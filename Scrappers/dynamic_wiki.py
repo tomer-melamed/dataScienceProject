@@ -30,6 +30,3 @@ class DynamicWiki(DynamicScrapers):
         no_nbsp = text.replace('&#160;', ' ')
         no_comma = no_nbsp.replace(',', '')
         return no_comma
-
-# a = DynamicWiki()
-# a.search_value_weight(a.search_value_page('lion'))

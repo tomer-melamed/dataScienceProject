@@ -45,10 +45,6 @@ class DynamicScrappersData:
                 if float(j) > 0:
                     all_points_y.append(float(j))
                     all_points_x.append(num)
-        # all_points_x.append(0)
-        # all_points_x.append(num + 1)
-        # all_points_y.append(0)
-        # all_points_y.append(0)
 
         plt.hist2d(all_points_x, all_points_y, bins=len(all_points_y), normed=False, cmap='Greens')
         plt.xticks([i + 1 for i in range(len(values))], values)
