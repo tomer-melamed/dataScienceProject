@@ -17,7 +17,7 @@ class AmazonScrapper(DynamicScrapers):
     def search_value_page(self, value):
         all_categories, categories_text =  self._get_categories()
         db = Db()
-        for i in range(26, len(all_categories)):
+        for i in range(27, len(all_categories)): # After failed case
             print(all_categories[i])
             self._searching_by_category(all_categories[i], db, categories_text[i])
             time.sleep(8)
@@ -75,8 +75,8 @@ class AmazonScrapper(DynamicScrapers):
                                           'div[contains(@id, "category")]/div/div/div/a/div/span/text()')
         special_case = False
         # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! only once!!!!!!!
-        if category_url == 'search-alias=toys-and-games-intl-ship':
-            all_inner_categories = all_inner_categories[9:]
+        if category_url == 'search-alias=videogames-intl-ship':
+            all_inner_categories = all_inner_categories[2:]
             special_case = True
         for i in range(len(all_inner_categories)):
             print(all_inner_categories[i])
@@ -121,7 +121,7 @@ class AmazonScrapper(DynamicScrapers):
             except:
                 products_url = products_url
             time.sleep(random.randint(1, 7))
-        if special_case:
+        if special_case: # If failed
             print('special case!!!!!!!!!')
             products_url = products_url[80:]
         for product_url in products_url[int(len(products_url) / 2):]:
@@ -207,8 +207,6 @@ class AmazonScrapper(DynamicScrapers):
         weight_kg = self._get_weight_from_str(weight)
         size_capacity = self._get_size_from_str(size)
         category = product_specific_category.strip()
-        # html = product_page.text.replace('"', r'\"')
-        # html = html.replace('\\"', '')
         weight = weight.replace('"', r'\"')
         weight = weight.replace('\\"', '')
         url = product_page.url
